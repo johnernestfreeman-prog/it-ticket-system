@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- =========================================
+        META
+    ========================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IT Help Desk Ticket System</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+        PAGE WRAPPER
+    ========================================== -->
+
+    <div class="app">
+
+        <!-- =========================================
+            HEADER
+        ========================================== -->
+
+        <header class="topbar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-headset"></i>
+
+                <div>
+
+                    <h1>IT Help Desk</h1>
+
+                    <p>Ticket Management System</p>
+
+                </div>
+
+            </div>
+
+            <div class="header-right">
+
+                <button id="newTicketBtn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    New Ticket
+
+                </button>
+
+                <div class="profile">
+
+                    <div class="avatar">
+                       <img src="/image/myface.jpeg" alt="John Freeman">
+
+                        JF
+
+                    </div>
+
+                    <div>
+
+                        <h3>John Freeman</h3>
+
+                        <p>IT Technician</p>
+
+
+<button id="themeToggle">
+    Theme
+</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- =========================================
+            MAIN CONTENT
+        ========================================== -->
+
+        <main>
+
+            <!-- =====================================
+                PAGE TITLE
+            ====================================== -->
+
+            <section class="page-title">
+
+                <div>
+
+                    <h2>
+
+                        Dashboard
+
+                    </h2>
+
+                    <p>
+
+                        Manage incidents, service requests, and technician assignments.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================
+                DASHBOARD
+            ====================================== -->
+
+            <section class="dashboard">
+
+                <!-- Open -->
+
+                <div class="dashboard-card open">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fa-solid fa-folder-open"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>Open Tickets</span>
+
+                        <h2 id="openCount">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <!-- In Progress -->
+
+                <div class="dashboard-card progress">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fa-solid fa-spinner"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>In Progress</span>
+
+                        <h2 id="progressCount">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <!-- Resolved -->
+
+                <div class="dashboard-card resolved">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>Resolved</span>
+
+                        <h2 id="resolvedCount">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <!-- Total -->
+
+                <div class="dashboard-card total">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>Total Tickets</span>
+
+                        <h2 id="totalCount">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+             <!-- =====================================
+                SEARCH & FILTERS
+            ====================================== -->
+
+            <section class="toolbar">
+
+                <div class="search-container">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        autocomplete="off"
+                        placeholder="Search by Incident ID, employee, subject, or department...">
+
+                </div>
+
+                <div class="filter-container">
+
+                    <select id="priorityFilter">
+
+                        <option value="">All Priorities</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Critical">Critical</option>
+
+                    </select>
+
+                    <select id="statusFilter">
+
+                        <option value="">All Statuses</option>
+                        <option value="Open">Open</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+
+                    </select>
+
+                    <select id="departmentFilter">
+
+                        <option value="">All Departments</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="IT">IT</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Operations">Operations</option>
+                        <option value="Sales">Sales</option>
+
+                    </select>
+
+                    <button id="clearFiltersBtn" class="secondary-btn">
+
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
+
+                        Clear Filters
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================
+                QUICK ACTIONS
+            ====================================== -->
+
+            <section class="quick-actions">
+
+                <button class="action-card" id="createTicketAction">
+
+                    <i class="fa-solid fa-ticket"></i>
+
+                    <span>Create Ticket</span>
+
+                </button>
+
+                <button class="action-card" id="refreshBoardAction">
+
+                    <i class="fa-solid fa-rotate"></i>
+
+                    <span>Refresh Board</span>
+
+                </button>
+
+                <button class="action-card" id="exportAction">
+
+                    <i class="fa-solid fa-file-export"></i>
+
+                    <span>Export</span>
+
+                </button>
+
+                <button class="action-card" id="settingsAction">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>Settings</span>
+
+                </button>
+
+            </section>
+
+            <!-- =====================================
+                BOARD SUMMARY
+            ====================================== -->
+
+            <section class="board-summary">
+
+                <div class="summary-card">
+
+                    <h3>Today's Activity</h3>
+
+                    <p id="todayActivity">
+
+                        0 Tickets Created Today
+
+                    </p>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <h3>Highest Priority</h3>
+
+                    <p id="highestPriority">
+
+                        No Critical Tickets
+
+                    </p>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <h3>Average Resolution</h3>
+
+                    <p id="averageResolution">
+
+                        -- Hours
+
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================
+                CREATE TICKET
+                (Part 3 begins here)
+            ====================================== -->
+
+            <section class="ticket-form-section">
+
+                <div class="section-header">
+
+                    <h2>
+
+                        <i class="fa-solid fa-plus-circle"></i>
+
+                        Create New Ticket
+
+                    </h2>
+
+                    <p>
+
+                        Submit a new IT incident or service request.
+
+                    </p>
+
+                </div>
+
+                <form id="ticketForm">
+
+                    <div class="form-grid">
+
+                        <!-- Employee -->
+
+                        <div class="form-group">
+
+                            <label for="employee">
+
+                                Employee Name
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="employee"
+                                autocomplete="name"
+                                placeholder="John Smith"
+                                required>
+
+                        </div>
+
+                        <!-- Email -->
+
+                        <div class="form-group">
+
+                            <label for="email">
+
+                                Email
+
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                autocomplete="email"
+                                placeholder="john.smith@company.com"
+                                required>
+
+                        </div>
+
+                        <!-- Department -->
+
+                        <div class="form-group">
+
+                            <label for="department">
+
+                                Department
+
+                            </label>
+
+                            <select id="department">
+
+                                <option value="">Select Department</option>
+
+                                <option>Accounting</option>
+                                <option>Finance</option>
+                                <option>Human Resources</option>
+                                <option>IT</option>
+                                <option>Marketing</option>
+                                <option>Operations</option>
+                                <option>Sales</option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- Building -->
+
+                        <div class="form-group">
+
+                            <label for="building">
+
+                                Building
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="building"
+                                autocomplete="off"
+                                placeholder="Building A">
+
+                        </div>
+
+                        <!-- Device -->
+
+                        <div class="form-group">
+
+                            <label for="device">
+
+                                Device
+
+                            </label>
+
+                            <select id="device">
+
+                                <option>Desktop</option>
+                                <option>Laptop</option>
+                                <option>Printer</option>
+                                <option>Monitor</option>
+                                <option>Docking Station</option>
+                                <option>Network Device</option>
+                                <option>Mobile Phone</option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- Category -->
+
+                        <div class="form-group">
+
+                            <label for="category">
+
+                                Category
+
+                            </label>
+
+                            <select id="category">
+
+                                <option>Hardware</option>
+                                <option>Software</option>
+                                <option>Network</option>
+                                <option>Email</option>
+                                <option>Security</option>
+                                <option>Account Access</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- Priority -->
+
+                        <div class="form-group">
+
+                            <label for="priority">
+
+                                Priority
+
+                            </label>
+
+                            <select id="priority">
+
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High</option>
+                                <option>Critical</option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- Technician -->
+
+                        <div class="form-group">
+
+                            <label for="technician">
+
+                                Assigned Technician
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="technician"
+                                autocomplete="off"
+                                placeholder="John Freeman">
+
+                        </div>
+
+                    </div>
+
+                    <!-- Subject -->
+
+                    <div class="form-group">
+
+                        <label for="subject">
+
+                            Subject
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="subject"
+                            autocomplete="off"
+                            placeholder="VPN Disconnecting"
+                            required>
+
+                    </div>
+
+                    <!-- Description -->
+
+                    <div class="form-group">
+
+                        <label for="description">
+
+                            Description
+
+                        </label>
+
+                        <textarea
+                            id="description"
+                            rows="6"
+                            placeholder="Describe the issue..."
+                            required></textarea>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button
+                            type="reset"
+                            class="secondary-btn">
+
+                            <i class="fa-solid fa-rotate-left"></i>
+
+                            Clear
+
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-btn">
+
+                            <i class="fa-solid fa-ticket"></i>
+
+                            Create Ticket
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- =====================================
+                KANBAN BOARD
+                (Part 4 begins here)
+            ===================================== -->
+
+
+
+             <section class="kanban-section">
+
+                <div class="section-header">
+
+                    <h2>
+
+                        <i class="fa-solid fa-table-columns"></i>
+
+                        Ticket Board
+
+                    </h2>
+
+                    <p>
+
+                        Manage tickets through each stage of the support process.
+
+                    </p>
+
+                </div>
+
+                <div class="kanban-board">
+
+                    <!-- =====================================
+                        OPEN COLUMN
+                    ====================================== -->
+
+                    <div class="kanban-column">
+
+                        <div class="column-header open-header">
+
+                            <h3>
+
+                                <i class="fa-solid fa-folder-open"></i>
+
+                                Open
+
+                            </h3>
+
+                            <span id="openBadge">0</span>
+
+                        </div>
+
+                        <div
+                            id="openTickets"
+                            class="ticket-list">
+
+                            <div class="empty-state">
+
+                                <i class="fa-regular fa-folder-open"></i>
+
+                                <h4>No Open Tickets</h4>
+
+                                <p>
+
+                                    New incidents will appear here.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- =====================================
+                        IN PROGRESS COLUMN
+                    ====================================== -->
+
+                    <div class="kanban-column">
+
+                        <div class="column-header progress-header">
+
+                            <h3>
+
+                                <i class="fa-solid fa-spinner"></i>
+
+                                In Progress
+
+                            </h3>
+
+                            <span id="progressBadge">0</span>
+
+                        </div>
+
+                        <div
+                            id="progressTickets"
+                            class="ticket-list">
+
+                            <div class="empty-state">
+
+                                <i class="fa-solid fa-spinner"></i>
+
+                                <h4>No Active Tickets</h4>
+
+                                <p>
+
+                                    Assigned tickets appear here.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- =====================================
+                        RESOLVED COLUMN
+                    ====================================== -->
+
+                    <div class="kanban-column">
+
+                        <div class="column-header resolved-header">
+
+                            <h3>
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                                Resolved
+
+                            </h3>
+
+                            <span id="resolvedBadge">0</span>
+
+                        </div>
+
+                        <div
+                            id="resolvedTickets"
+                            class="ticket-list">
+
+                            <div class="empty-state">
+
+                                <i class="fa-regular fa-circle-check"></i>
+
+                                <h4>No Resolved Tickets</h4>
+
+                                <p>
+
+                                    Completed tickets will appear here.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================
+                TICKET CARD TEMPLATE
+                JavaScript will clone this template
+            ====================================== -->
+
+            <template id="ticketTemplate">
+
+                <article class="ticket-card">
+
+                    <div class="ticket-top">
+
+                        <span class="ticket-id">
+
+                            INC-10001
+
+                        </span>
+
+                        <span class="priority-badge medium">
+
+                            Medium
+
+                        </span>
+
+                    </div>
+
+                    <h3 class="ticket-title">
+
+                        VPN Disconnecting
+
+                    </h3>
+
+                    <div class="ticket-info">
+
+                        <p>
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <span class="ticket-employee">
+
+                                John Smith
+
+                            </span>
+
+                        </p>
+
+                        <p>
+
+                            <i class="fa-solid fa-building"></i>
+
+                            <span class="ticket-department">
+
+                                IT
+
+                            </span>
+
+                        </p>
+
+                        <p>
+
+                            <i class="fa-solid fa-laptop"></i>
+
+                            <span class="ticket-device">
+
+                                Laptop
+
+                            </span>
+
+                        </p>
+
+                        <p>
+
+                            <i class="fa-solid fa-user-gear"></i>
+
+                            <span class="ticket-technician">
+
+                                John Freeman
+
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                    <div class="ticket-footer">
+
+                        <small class="ticket-updated">
+
+                            Updated Today
+
+                        </small>
+
+                        <div class="ticket-buttons">
+
+                            <button class="view-btn">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                                View
+
+                            </button>
+
+                            <button class="delete-btn">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                                Delete
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </template>
+
+            <!-- =====================================
+                MODAL
+                (Part 5 begins here)
+            ====================================== -->
+
+
+            <!-- =====================================
+                TICKET DETAILS MODAL
+            ====================================== -->
+
+            <div id="ticketModal" class="modal">
+
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+
+                    <div class="modal-header">
+
+                        <div>
+
+                            <h2 id="modalTicketId">
+
+                                INC-10001
+
+                            </h2>
+
+                            <p>
+
+                                Ticket Details
+
+                            </p>
+
+                        </div>
+
+                        <button
+                            id="closeModal"
+                            class="icon-button">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+                    <!-- Modal Body -->
+
+                    <div class="modal-body">
+
+                        <div class="modal-grid">
+
+                            <div class="detail-group">
+
+                                <label>Employee</label>
+                                <p id="modalEmployee">John Smith</p>
+
+                            </div>
+
+                            <div class="detail-group">
+
+                                <label>Email</label>
+                                <p id="modalEmail">john@company.com</p>
+
+                            </div>
+
+                            <div class="detail-group">
+
+                                <label>Department</label>
+                                <p id="modalDepartment">IT</p>
+
+                            </div>
+
+                            <div class="detail-group">
+
+                                <label>Building</label>
+                                <p id="modalBuilding">Building A</p>
+
+                            </div>
+
+                            <div class="detail-group">
+
+                                <label>Device</label>
+                                <p id="modalDevice">Laptop</p>
+
+                            </div>
+
+                            <div class="detail-group">
+
+                                <label>Category</label>
+                                <p id="modalCategory">Network</p>
+
+                            </div>
+
+                            <div class="detail-group">
+
+                                <label>Priority</label>
+
+                                <span
+                                    id="modalPriority"
+                                    class="priority-badge">
+
+                                    Medium
+
+                                </span>
+
+                            </div>
+
+                            <div class="detail-group">
+
+                                <label>Status</label>
+
+                                <select id="modalStatus">
+
+                                    <option>Open</option>
+                                    <option>In Progress</option>
+                                    <option>Resolved</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="detail-group">
+
+                                <label>Assigned Technician</label>
+
+                                <input
+                                    type="text"
+                                    id="modalTechnician"
+                                    autocomplete="off">
+
+                            </div>
+
+                        </div>
+
+                        <!-- Subject -->
+
+                        <div class="detail-group">
+
+                            <label>Subject</label>
+
+                            <input
+                                type="text"
+                                id="modalSubject"
+                                autocomplete="off">
+
+                        </div>
+
+                        <!-- Description -->
+
+                        <div class="detail-group">
+
+                            <label>Description</label>
+
+                            <textarea
+                                id="modalDescription"
+                                rows="6"></textarea>
+
+                        </div>
+
+                        <!-- Technician Notes -->
+
+                        <div class="detail-group">
+
+                            <label>Technician Notes</label>
+
+                            <textarea
+                                id="modalNotes"
+                                rows="5"
+                                placeholder="Internal notes..."></textarea>
+
+                        </div>
+
+                        <!-- Timeline -->
+
+                        <div class="detail-group">
+
+                            <label>Activity Timeline</label>
+
+                            <ul
+                                id="activityTimeline"
+                                class="timeline">
+
+                                <li>
+
+                                    Ticket Created
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+<!--Ticket Card-->
+
+<div class="ticket-card">
+
+    <div class="ticket-header">
+
+        <div>
+
+            <span class="ticket-id"></span>
+
+            <h3 class="ticket-title"></h3>
+
+        </div>
+
+        <span class="priority-badge"></span>
+
+    </div>
+
+    <div class="ticket-details">
+
+        <div class="ticket-detail">
+            <i class="fa-solid fa-user"></i>
+            <span class="ticket-employee"></span>
+        </div>
+
+        <div class="ticket-detail">
+            <i class="fa-solid fa-building"></i>
+            <span class="ticket-department"></span>
+        </div>
+
+        <div class="ticket-detail">
+            <i class="fa-solid fa-laptop"></i>
+            <span class="ticket-device"></span>
+        </div>
+
+        <div class="ticket-detail">
+            <i class="fa-solid fa-user-gear"></i>
+            <span class="ticket-technician"></span>
+        </div>
+
+    </div>
+
+    <div class="ticket-footer">
+
+        <span class="ticket-updated"></span>
+
+        <div class="ticket-actions">
+
+            <button class="view-btn">
+                <i class="fa-solid fa-eye"></i>
+            </button>
+
+            <button class="delete-btn">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+                    <!-- Footer -->
+
+                    <div class="modal-footer">
+
+                        <button
+                            id="deleteTicketBtn"
+                            class="danger-btn">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                            Delete
+
+                        </button>
+
+                        <div>
+
+                            <button
+                                id="closeTicketModal"
+                                class="secondary-btn">
+
+                                Close
+
+                            </button>
+
+                            <button
+                                id="saveTicketBtn"
+                                class="primary-btn">
+
+                                <i class="fa-solid fa-floppy-disk"></i>
+
+                                Save Changes
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- =====================================
+            FOOTER
+        ====================================== -->
+
+        <footer>
+
+            <p>
+
+                © 2026 IT Help Desk Ticket System
+
+            </p>
+
+            <p>
+
+                Portfolio Project by John Freeman
+
+            </p>
+
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
