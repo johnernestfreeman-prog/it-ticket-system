@@ -11,6 +11,7 @@ A full-stack ticket management system built for IT help desks to track incidents
 <!-- Replace this with your actual dashboard screenshot -->
 <!-- Save your screenshot in the repo (e.g. /screenshots/dashboard.png) and update the path below -->
 **[🚀 Visit Live Site](https://it-ticket-system.netlify.app/)**
+   [Website presentation](https://johnernestfreeman-prog.github.io/it-ticket-system/)
  
 ---
  
