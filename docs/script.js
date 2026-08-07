@@ -8,7 +8,7 @@
     DOM ELEMENTS
 ==================================================*/
 /*Tickets from Mongo database*/
-const API_URL = "https://it-ticket-system-az64.onrender.com/api/tickets";
+const API_URL = "https://it-ticket-system-rus5.onrender.com/api/tickets";
 const ticketForm = document.getElementById("ticketForm");
 
 const openTickets = document.getElementById("openTickets");
